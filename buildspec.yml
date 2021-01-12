@@ -4,10 +4,7 @@ version: 0.2
 phases:
   install: 
     commands: 
-      - apt update
-      - apt install python3.8 -y
-      - pipenv install
-      - apt install git -y
+      - yum update
   build:
     commands:
       - echo Build started on `date`
