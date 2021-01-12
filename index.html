@@ -1,0 +1,40 @@
+<html>Application Security Demo Site</html>
+    <br />
+    <label for='user-file'>Test File</label>
+    <input id="user-file" type="file" />
+    <button onclick="submitFile()">Submit</button>
+   <h4>Upload Status:</h4> <label id='upload-response'>N/A</label>
+
+   <h3>Malicious Payload, Illegal File Access, Remote Command Execution and Open Redirect Features</h3>
+   <label for='formElem'>Eval Form</label>
+   <form id="formElem">
+    <input type="text" name="name" value="John">
+    <input type="submit">
+  </form>
+
+<script>
+async function submitFile(){
+    let userFile = document.getElementById("user-file").files[0];
+    let formData = new FormData();
+
+   formData.append("userFile", userFile);
+   let res = await fetch('/fileupload', {method: "POST", body: formData}).promise();
+
+}
+
+formElem.onsubmit = async (e) => {
+    e.preventDefault();
+
+    let response = await fetch('/dev/formupload', {
+      method: 'POST',
+      body: new FormData(formElem),
+      mode: 'no-cors'
+    });
+let form = new FormData(formElem)
+console.log(form)
+    let result = await response.json();
+    
+    alert(result.message);
+  };
+  
+</script>
