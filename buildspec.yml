@@ -8,8 +8,6 @@ phases:
       - $(aws ecr get-login --no-include-email --region us-west-2)
   build:
     commands:
-      - ls
-      - docker
       - echo Build started on `date`
       - echo Building the Docker image...          
       - docker build -t nodeapp:latest .   

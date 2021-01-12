@@ -25,7 +25,7 @@ async function submitFile(){
 formElem.onsubmit = async (e) => {
     e.preventDefault();
 
-    let response = await fetch('/dev/formupload', {
+    let response = await fetch('/formupload', {
       method: 'POST',
       body: new FormData(formElem),
       mode: 'no-cors'
@@ -36,5 +36,5 @@ console.log(form)
     
     alert(result.message);
   };
-  
+
 </script>
