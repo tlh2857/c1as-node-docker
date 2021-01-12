@@ -1,0 +1,22 @@
+version: 0.2
+
+env:
+  variables:
+      key: "12a66569-1adb-4182-a6b8-f493feca0254"
+      secret: "c0265182-9ed0-4c22-8bae-86786a8352a9"
+phases:
+  pre_build:
+    commands:
+      - NOW=`date '+%F_%H:%M:%S'`;
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 843982302747.dkr.ecr.us-west-2.amazonaws.com
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...          
+      - docker build -t 843982302747.dkr.ecr.us-west-2.amazonaws.com/c1as-linux:$NOW .     
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push 843982302747.dkr.ecr.us-west-2.amazonaws.com/c1as-linux:$NOW
