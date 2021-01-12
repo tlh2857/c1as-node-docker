@@ -7,7 +7,7 @@ env:
 phases:
   pre_build:
     commands:
-      - NOW=`date '+%F_%H:%M:%S'`;
+      - EXPORT NOW=`date '+%F_%H:%M:%S'`;
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 843982302747.dkr.ecr.us-west-2.amazonaws.com
   build:
