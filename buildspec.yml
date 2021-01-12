@@ -7,16 +7,15 @@ env:
 phases:
   pre_build:
     commands:
-      - EXPORT NOW=`date '+%F_%H:%M:%S'`;
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 843982302747.dkr.ecr.us-west-2.amazonaws.com
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...          
-      - docker build -t 843982302747.dkr.ecr.us-west-2.amazonaws.com/c1as-linux:$NOW .     
+      - docker build -t 843982302747.dkr.ecr.us-west-2.amazonaws.com/c1as-linux:latest .     
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 843982302747.dkr.ecr.us-west-2.amazonaws.com/c1as-linux:$NOW
+      - docker push 843982302747.dkr.ecr.us-west-2.amazonaws.com/c1as-linux:latest
