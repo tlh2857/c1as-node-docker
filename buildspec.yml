@@ -2,10 +2,10 @@ version: 0.2
 
 
 phases:
-  install: 
-    commands:
   build:
     commands:
+      - ls
+      - docker
       - echo Build started on `date`
       - echo Building the Docker image...          
       - docker build -t nodeapp:latest .   
