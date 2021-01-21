@@ -18,7 +18,15 @@ async function submitFile(){
     let formData = new FormData();
 
    formData.append("userFile", userFile);
-   let res = await fetch('/fileupload', {method: "POST", body: formData}).promise();
+   let res = await fetch('/fileupload', {method: "POST", body: formData});
+   res = await res.json();
+   if(res.message=='File is uploaded'){
+           console.log(res)
+           document.getElementById('upload-response').innerHTML = res.message + ': ' + res.data.name
+       } else {
+           console.log(res)
+        document.getElementById('upload-response').innerHTML = res.message
+       }
 
 }
 
